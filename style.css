@@ -1,0 +1,270 @@
+@import url("https://fonts.googleapis.com/css2?family=Mona+Sans:ital,wght@0,200..900;1,200..900&display=swap");
+* {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  scroll-behavior: smooth;
+}
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+}
+html body, body body {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  --theme-clr: #fff;
+  font-family: "Mona Sans", sans-serif;
+  background: var(--theme-clr);
+}
+html .inf-grid-hero-container, body .inf-grid-hero-container {
+  height: 100vh;
+  width: 100vw;
+  perspective: 1000px;
+  position: relative;
+  --sz: 1800px;
+  --grid-sz: 0;
+  --rev-dis: 0;
+  transform-style: preserve-3d;
+  transform: translateZ(calc(var(--rev-dis) * 1px));
+}
+html .inf-grid-hero-container > div, body .inf-grid-hero-container > div {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  display: grid;
+  place-items: center;
+  z-index: 1;
+  grid-template-columns: repeat(var(--grid-sz), 1fr);
+  grid-template-rows: repeat(var(--grid-sz), 1fr);
+  gap: 6px;
+}
+html .inf-grid-hero-container > div::after, body .inf-grid-hero-container > div::after {
+  content: "";
+  display: block;
+  height: 100%;
+  background: var(--theme-clr);
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 3;
+}
+html .inf-grid-hero-container > div > div, body .inf-grid-hero-container > div > div {
+  width: 100%;
+  height: 100%;
+  background-size: cover !important;
+  background-position: center !important;
+  background: repeating-linear-gradient(45deg, rgba(148, 164, 194, 0.0666666667) 0%, rgba(148, 164, 194, 0.0666666667) 5%, transparent 5%, transparent 10%);
+  opacity: 0;
+}
+html .inf-grid-hero-container > div > div:hover, body .inf-grid-hero-container > div > div:hover {
+  border: 4px solid #fff;
+  cursor: pointer;
+}
+html .inf-grid-hero-container > div > div.loaded, body .inf-grid-hero-container > div > div.loaded {
+  transition: transform 0.4s ease-out, opacity 0.4s ease-out;
+  transform-style: preserve-3d;
+  opacity: 1;
+  z-index: 2;
+  transform: translate3d(0, 0, -1px) !important;
+}
+html .inf-grid-hero-container > .top, body .inf-grid-hero-container > .top {
+  top: 0;
+  transform-origin: top center;
+  transform: rotateX(-90deg);
+  height: var(--sz);
+  perspective: 1000px;
+}
+html .inf-grid-hero-container > .top::after, body .inf-grid-hero-container > .top::after {
+  background: linear-gradient(180deg, transparent, var(--theme-clr) calc(1% * (100 - var(--rev-dis))));
+}
+html .inf-grid-hero-container > .top .shift-away, body .inf-grid-hero-container > .top .shift-away {
+  translate: 0 100%;
+}
+html .inf-grid-hero-container > .top > div, body .inf-grid-hero-container > .top > div {
+  transform: translate3d(0, 0, -100vh);
+}
+html .inf-grid-hero-container > .left, body .inf-grid-hero-container > .left {
+  left: 0;
+  transform-origin: center left;
+  transform: rotateY(90deg);
+  width: var(--sz);
+}
+html .inf-grid-hero-container > .left::after, body .inf-grid-hero-container > .left::after {
+  background: linear-gradient(90deg, transparent, var(--theme-clr) calc(1% * (100 - var(--rev-dis))));
+}
+html .inf-grid-hero-container > .left .shift-away, body .inf-grid-hero-container > .left .shift-away {
+  translate: 100% 0;
+}
+html .inf-grid-hero-container > .left > div, body .inf-grid-hero-container > .left > div {
+  transform: translate3d(0, 0, -50vw);
+}
+html .inf-grid-hero-container > .bottom, body .inf-grid-hero-container > .bottom {
+  bottom: 0;
+  transform-origin: bottom center;
+  transform: rotateX(90deg);
+  height: var(--sz);
+}
+html .inf-grid-hero-container > .bottom::after, body .inf-grid-hero-container > .bottom::after {
+  background: linear-gradient(0deg, transparent, var(--theme-clr) calc(1% * (100 - var(--rev-dis))));
+}
+html .inf-grid-hero-container > .bottom .shift-away, body .inf-grid-hero-container > .bottom .shift-away {
+  translate: 0% -100%;
+}
+html .inf-grid-hero-container > .bottom > div, body .inf-grid-hero-container > .bottom > div {
+  transform: translate3d(0, 0, -50vh);
+}
+html .inf-grid-hero-container > .right, body .inf-grid-hero-container > .right {
+  right: 0;
+  transform-origin: center right;
+  transform: rotateY(-90deg);
+  width: var(--sz);
+}
+html .inf-grid-hero-container > .right::after, body .inf-grid-hero-container > .right::after {
+  background: linear-gradient(270deg, transparent, var(--theme-clr) calc(1% * (100 - var(--rev-dis))));
+}
+html .inf-grid-hero-container > .right .shift-away, body .inf-grid-hero-container > .right .shift-away {
+  translate: -100% 0%;
+}
+html .inf-grid-hero-container > .right > div, body .inf-grid-hero-container > .right > div {
+  transform: translate3d(0, 0, -50vw);
+}
+html .inf-grid-hero-container > .selectedPane, body .inf-grid-hero-container > .selectedPane {
+  transform: rotateX(0deg);
+  width: 100vw;
+  height: 100vh;
+  z-index: 100;
+  transition: all 1s ease-in-out;
+  position: absolute;
+}
+html .inf-grid-hero-container > .selectedPane::after, body .inf-grid-hero-container > .selectedPane::after {
+  background: none;
+}
+html .inf-grid-hero-container > .selectedPane > div, body .inf-grid-hero-container > .selectedPane > div {
+  opacity: 0;
+}
+html .inf-grid-hero-container > .selectedPane > .selected, body .inf-grid-hero-container > .selectedPane > .selected {
+  transition: all 1s ease-in-out;
+  rotate: 90deg 90deg;
+  transform: translate3d(0, 100px, 0);
+  position: absolute;
+  z-index: 100;
+  opacity: 0;
+  animation: fadeIn 1s forwards;
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat !important;
+  cursor: default;
+}
+html .inf-grid-hero-container > .selectedPane > .selected:hover, body .inf-grid-hero-container > .selectedPane > .selected:hover {
+  border: none;
+}
+html .inf-grid-hero-container > .selectedPane.top > .selected, body .inf-grid-hero-container > .selectedPane.top > .selected {
+  top: 0;
+}
+html .inf-grid-hero-container > .selectedPane.left > .selected, body .inf-grid-hero-container > .selectedPane.left > .selected {
+  left: 0;
+}
+html .inf-grid-hero-container > .selectedPane.right > .selected, body .inf-grid-hero-container > .selectedPane.right > .selected {
+  right: 0;
+}
+html .inf-grid-hero-container > .selectedPane.bottom > .selected, body .inf-grid-hero-container > .selectedPane.bottom > .selected {
+  bottom: 0;
+}
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+html .content, body .content {
+  position: absolute;
+  width: 34%;
+  height: 34%;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  border-radius: 8px;
+  backdrop-filter: blur(3px);
+  margin: auto;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  z-index: 5;
+}
+html .content h2, body .content h2 {
+  font-size: 3em;
+  font-weight: 600;
+  z-index: 1;
+  color: #000;
+  user-select: none;
+  margin: 0;
+}
+html .content p, body .content p {
+  margin-top: 0;
+  color: #333;
+  font-weight: 500;
+  text-align: center;
+}
+html .content span, body .content span {
+  color: orangered;
+}
+html .content div.button, body .content div.button {
+  background: #1e1e1e;
+  padding: 6px 42px 8px 42px;
+  border-radius: 12px;
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+  transition: box-shadow 0.2s ease-in-out;
+}
+html .content div.button:hover, body .content div.button:hover {
+  box-shadow: inset 0 0 8px 1px #fff, inset 0 0 0 1px #fff;
+}
+html body:has(.selectedPane) .content, body body:has(.selectedPane) .content {
+  transition: opacity 0.4s ease-in-out;
+  opacity: 0;
+  z-index: -1;
+}
+html body:has(.selectedPane) #back-btn, body body:has(.selectedPane) #back-btn {
+  opacity: 1;
+  pointer-events: all;
+}
+html body:has(.selectedPane) .tp-dfwv, body body:has(.selectedPane) .tp-dfwv {
+  display: none;
+}
+html #back-btn, body #back-btn {
+  position: absolute;
+  left: 1em;
+  top: 1em;
+  border: 1px solid #aaa;
+  z-index: 101;
+  background: #1e1e1e;
+  padding: 6px 42px 8px 42px;
+  border-radius: 12px;
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+  transition: box-shadow 0.2s ease-in-out;
+  opacity: 0;
+  pointer-events: none;
+}
+html #back-btn:hover, body #back-btn:hover {
+  box-shadow: inset 0 0 8px 1px #fff, inset 0 0 0 1px #fff;
+}
+html #scroll-zone, body #scroll-zone {
+  height: 100000px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/*# sourceMappingURL=style.css.map */
